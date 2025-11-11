@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.14.36603.0 d17.14
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PointOfSalesApp", "PointOfSalesApp.csproj", "{7B1340D0-6FDB-4FA3-BACA-4C103694AEFE}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{7B1340D0-6FDB-4FA3-BACA-4C103694AEFE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7B1340D0-6FDB-4FA3-BACA-4C103694AEFE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7B1340D0-6FDB-4FA3-BACA-4C103694AEFE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7B1340D0-6FDB-4FA3-BACA-4C103694AEFE}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {C12E4473-B717-4B9A-A3F8-2B572C0F478A}
+	EndGlobalSection
+EndGlobal
