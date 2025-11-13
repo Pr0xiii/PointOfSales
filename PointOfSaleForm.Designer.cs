@@ -31,7 +31,7 @@
             labelVendorName = new Label();
             b_SetClient = new Button();
             b_CreateClient = new Button();
-            flowLayoutPanel1 = new FlowLayoutPanel();
+            productsLayoutPanel = new FlowLayoutPanel();
             groupBox_Sale = new GroupBox();
             b_Encaisser = new Button();
             b_CreateProduct = new Button();
@@ -66,13 +66,14 @@
             b_CreateClient.TabIndex = 2;
             b_CreateClient.Text = "New client";
             b_CreateClient.UseVisualStyleBackColor = true;
+            b_CreateClient.Click += b_CreateClient_Click;
             // 
-            // flowLayoutPanel1
+            // productsLayoutPanel
             // 
-            flowLayoutPanel1.Location = new Point(982, 122);
-            flowLayoutPanel1.Name = "flowLayoutPanel1";
-            flowLayoutPanel1.Size = new Size(494, 559);
-            flowLayoutPanel1.TabIndex = 3;
+            productsLayoutPanel.Location = new Point(982, 122);
+            productsLayoutPanel.Name = "flowLayoutPanel1";
+            productsLayoutPanel.Size = new Size(494, 559);
+            productsLayoutPanel.TabIndex = 3;
             // 
             // groupBox_Sale
             // 
@@ -91,6 +92,7 @@
             b_Encaisser.TabIndex = 5;
             b_Encaisser.Text = "Encaisser";
             b_Encaisser.UseVisualStyleBackColor = true;
+            b_Encaisser.Click += b_Encaisser_Click;
             // 
             // b_CreateProduct
             // 
@@ -100,6 +102,7 @@
             b_CreateProduct.TabIndex = 6;
             b_CreateProduct.Text = "New Product";
             b_CreateProduct.UseVisualStyleBackColor = true;
+            b_CreateProduct.Click += b_CreateProduct_Click;
             // 
             // b_Cancel
             // 
@@ -109,6 +112,7 @@
             b_Cancel.TabIndex = 7;
             b_Cancel.Text = "Cancel";
             b_Cancel.UseVisualStyleBackColor = true;
+            b_Cancel.Click += b_Cancel_Click;
             // 
             // PointOfSaleForm
             // 
@@ -136,7 +140,7 @@
         private Label labelVendorName;
         private Button b_SetClient;
         private Button b_CreateClient;
-        private FlowLayoutPanel flowLayoutPanel1;
+        private FlowLayoutPanel productsLayoutPanel;
         private GroupBox groupBox_Sale;
         private Button b_Encaisser;
         private Button b_CreateProduct;

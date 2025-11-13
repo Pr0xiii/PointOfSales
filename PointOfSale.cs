@@ -67,12 +67,22 @@ namespace PointOfSalesApp
             }
         }
 
-        public void Encaisser()
+        public bool Encaisser()
         {
             if (CurrentSale != null && CurrentClient.Acheter(CurrentSale.Total))
             {
                 Money += CurrentSale.Total;
                 TodaysSales.Add(CurrentSale);
+                CurrentSale = null;
+                return true;
+            }
+            else {
+                return false;
+            }
+        }
+        public void CancelSale() 
+        {
+            if(CurrentSale != null) {
                 CurrentSale = null;
             }
         }
