@@ -34,6 +34,12 @@ namespace PointOfSalesApp
             Total -= product.SalePrice;
             Console.WriteLine($"Removing {product.Name} from the cart. Total : {Total}.");
         }
+        public double GetTotalPrice()
+        {
+            if (BoughtProducts.Count == 0) return 0.00;
+
+            return BoughtProducts.Sum(e => e.SalePrice);
+        }
     }
 
 }

@@ -33,9 +33,11 @@
             b_CreateClient = new Button();
             productsLayoutPanel = new FlowLayoutPanel();
             groupBox_Sale = new GroupBox();
+            textBoxSale = new TextBox();
             b_Encaisser = new Button();
             b_CreateProduct = new Button();
             b_Cancel = new Button();
+            labelTotalPrice = new Label();
             groupBox_Sale.SuspendLayout();
             SuspendLayout();
             // 
@@ -79,12 +81,24 @@
             // 
             // groupBox_Sale
             // 
+            groupBox_Sale.Controls.Add(textBoxSale);
             groupBox_Sale.Location = new Point(31, 122);
             groupBox_Sale.Name = "groupBox_Sale";
             groupBox_Sale.Size = new Size(785, 559);
             groupBox_Sale.TabIndex = 4;
             groupBox_Sale.TabStop = false;
             groupBox_Sale.Text = "Current Sale";
+            // 
+            // textBoxSale
+            // 
+            textBoxSale.Location = new Point(31, 29);
+            textBoxSale.Multiline = true;
+            textBoxSale.Name = "textBoxSale";
+            textBoxSale.ReadOnly = true;
+            textBoxSale.ScrollBars = ScrollBars.Vertical;
+            textBoxSale.Size = new Size(707, 503);
+            textBoxSale.TabIndex = 0;
+            textBoxSale.TextChanged += textBoxSale_TextChanged;
             // 
             // b_Encaisser
             // 
@@ -116,11 +130,21 @@
             b_Cancel.UseVisualStyleBackColor = true;
             b_Cancel.Click += b_Cancel_Click;
             // 
+            // labelTotalPrice
+            // 
+            labelTotalPrice.AutoSize = true;
+            labelTotalPrice.Location = new Point(730, 699);
+            labelTotalPrice.Name = "labelTotalPrice";
+            labelTotalPrice.Size = new Size(64, 23);
+            labelTotalPrice.TabIndex = 8;
+            labelTotalPrice.Text = "Total =";
+            // 
             // PointOfSaleForm
             // 
             AutoScaleDimensions = new SizeF(10F, 22F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1540, 742);
+            Controls.Add(labelTotalPrice);
             Controls.Add(b_Cancel);
             Controls.Add(b_CreateProduct);
             Controls.Add(b_Encaisser);
@@ -134,6 +158,7 @@
             Name = "PointOfSaleForm";
             Text = "PointOfSaleForm";
             groupBox_Sale.ResumeLayout(false);
+            groupBox_Sale.PerformLayout();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -148,5 +173,7 @@
         private Button b_Encaisser;
         private Button b_CreateProduct;
         private Button b_Cancel;
+        private TextBox textBoxSale;
+        private Label labelTotalPrice;
     }
 }

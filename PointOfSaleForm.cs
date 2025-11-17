@@ -30,49 +30,61 @@ namespace PointOfSalesApp
         {
             if (_pos.Products.Count == 0) return;
             // Initialize products
-            foreach(Product product in _pos.Products) 
+            foreach (Product product in _pos.Products)
             {
                 Button btn = new Button();
                 btn.Size = new Size(100, 50);
                 btn.Text = product.Name;
-                btn.Click += (sender, e) => _pos.OnEnterProduct(product);
+                btn.Click += (sender, e) => AddProductToSale(product);
                 productsLayoutPanel.Controls.Add(btn);
             }
         }
+        private void AddProductToSale(Product product)
+        {
+            _pos.OnEnterProduct(product);
+            textBoxSale.Text += $"{product.Name} ---- {product.SalePrice}" + System.Environment.NewLine;
+        }
 
-        private void b_CreateProduct_Click(object sender, EventArgs e) 
+        private void b_CreateProduct_Click(object sender, EventArgs e)
         {
             // Open Product form
             // If dialogResult == OK => Add Product
             ProductForm productForm = new ProductForm(_pos);
             DialogResult dialog = productForm.ShowDialog();
 
-            if(dialog == DialogResult.OK)
+            if (dialog == DialogResult.OK)
             {
                 InitializeProducts();
             }
         }
 
-        private void b_CreateClient_Click(object sender, EventArgs e) 
+        private void b_CreateClient_Click(object sender, EventArgs e)
         {
             // Open Client form
             // If dialogResult == OK => Create Client
         }
 
-        private void b_Cancel_Click(object sender, EventArgs e) 
+        private void b_Cancel_Click(object sender, EventArgs e)
         {
             _pos.CancelSale();
             MessageBox.Show("Your current sale is canceled");
         }
 
-        private void b_Encaisser_Click(object sender, EventArgs e) 
+        private void b_Encaisser_Click(object sender, EventArgs e)
         {
-            if(_pos.Encaisser()) {
+            if (_pos.Encaisser())
+            {
                 MessageBox.Show("Sale confirmed. Thanks for your purchase.");
             }
-            else {
+            else
+            {
                 MessageBox.Show("No sales found. Or the customer has an insufficient balance.");
             }
+        }
+
+        private void textBoxSale_TextChanged(object sender, EventArgs e)
+        {
+            labelTotalPrice.Text = $"Total : {_pos.CurrentSale.GetTotalPrice()}";
         }
     }
 }
