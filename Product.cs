@@ -11,10 +11,10 @@ namespace PointOfSalesApp
         private int _tva;
         private int _marge;
 
-        public string Name { get; private set; }
+        public string Name { get; set; }
         public int? Barcode { get; private set; }
-        public double SalePrice { get; private set; }
-        public double CostPrice { get; private set; }
+        public double SalePrice { get; set; }
+        public double CostPrice { get; set; }
         public int TVA
         {
             get { return _tva; }
@@ -34,18 +34,31 @@ namespace PointOfSalesApp
             }
         }
 
+        public bool FixedMarge { get; set; }
+
+        public Product()
+        {
+            Name = "Default product";
+            CostPrice = 0;
+            TVA = 0;
+            Marge = 0;
+            FixedMarge = false;
+        }
         public Product(string name, double cost)
         {
             Name = name;
             CostPrice = cost;
             TVA = 21;
             Marge = 0;
+            FixedMarge = false;
         }
 
         public void CalculateSalePrice()
         {
-            SalePrice = CostPrice + (CostPrice * TVA / 100) + (CostPrice * Marge / 100);
-            Console.WriteLine($"New price : {SalePrice} with {TVA}% of TVA and {Marge}% of marge");
+            if (FixedMarge)
+            {
+                SalePrice = CostPrice + (CostPrice * TVA / 100) + (CostPrice * Marge / 100);
+            }
         }
         public void EnterBarcade(int barcode)
         {

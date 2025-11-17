@@ -11,7 +11,10 @@ namespace PointOfSalesApp
             // To customize application configuration such as set high DPI settings or default font,
             // see https://aka.ms/applicationconfiguration.
             ApplicationConfiguration.Initialize();
-            Application.Run(new PointOfSalesApp());
+
+            PointOfSale pos = new PointOfSale("Jolan Company", 2500.0);
+
+            Application.Run(new PointOfSalesApp(pos));
         }
     }
 }

@@ -36,6 +36,7 @@
             b_Encaisser = new Button();
             b_CreateProduct = new Button();
             b_Cancel = new Button();
+            groupBox_Sale.SuspendLayout();
             SuspendLayout();
             // 
             // labelVendorName
@@ -45,7 +46,7 @@
             labelVendorName.Location = new Point(31, 37);
             labelVendorName.Margin = new Padding(4, 0, 4, 0);
             labelVendorName.Name = "labelVendorName";
-            labelVendorName.Size = new Size(123, 24);
+            labelVendorName.Size = new Size(97, 19);
             labelVendorName.TabIndex = 0;
             labelVendorName.Text = "Vendor name";
             // 
@@ -71,7 +72,8 @@
             // productsLayoutPanel
             // 
             productsLayoutPanel.Location = new Point(982, 122);
-            productsLayoutPanel.Name = "flowLayoutPanel1";
+            productsLayoutPanel.Name = "productsLayoutPanel";
+            productsLayoutPanel.Padding = new Padding(10);
             productsLayoutPanel.Size = new Size(494, 559);
             productsLayoutPanel.TabIndex = 3;
             // 
@@ -116,14 +118,14 @@
             // 
             // PointOfSaleForm
             // 
-            AutoScaleDimensions = new SizeF(12F, 28F);
+            AutoScaleDimensions = new SizeF(10F, 22F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1562, 742);
+            ClientSize = new Size(1540, 742);
             Controls.Add(b_Cancel);
             Controls.Add(b_CreateProduct);
             Controls.Add(b_Encaisser);
             Controls.Add(groupBox_Sale);
-            Controls.Add(flowLayoutPanel1);
+            Controls.Add(productsLayoutPanel);
             Controls.Add(b_CreateClient);
             Controls.Add(b_SetClient);
             Controls.Add(labelVendorName);
@@ -131,6 +133,7 @@
             Margin = new Padding(4);
             Name = "PointOfSaleForm";
             Text = "PointOfSaleForm";
+            groupBox_Sale.ResumeLayout(false);
             ResumeLayout(false);
             PerformLayout();
         }

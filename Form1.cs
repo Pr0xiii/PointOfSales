@@ -2,12 +2,12 @@ namespace PointOfSalesApp
 {
     public partial class PointOfSalesApp : Form
     {
-        public PointOfSale PointOfSale { get; private set; }
-        public PointOfSalesApp()
+        private readonly PointOfSale _pos;
+        public PointOfSalesApp(PointOfSale pos)
         {
+            _pos = pos;
             InitializeComponent();
             InitializeVendors();
-            InitializePointOfSale();
         }
 
         public void InitializeVendors()
@@ -16,30 +16,27 @@ namespace PointOfSalesApp
 
             for(int i = 0; i < allVendors.Length; i++)
             {
+                int index = i;
+
                 Button btn = new Button();
                 btn.Size = new Size(120, 70);
-                btn.Text = allVendors.GetValue(i).ToString();
-                btn.Click += (sender, e) => OnClickVendor((Vendors)allVendors.GetValue(i));
+                btn.Text = ((Vendors)index).ToString();
+                btn.Click += (sender, e) => OnClickVendor((Vendors)index);
+
                 vendorsLayoutPanel.Controls.Add(btn);
             }
         }
 
         public void OnClickVendor(Vendors vendor)
         {
-            PointOfSale.SetVendor(vendor);
-            PointOfSaleForm pos = new PointOfSaleForm();
-            pos.PointOfSale = this.PointOfSale;
+            _pos.SetVendor(vendor);
+            PointOfSaleForm pos = new PointOfSaleForm(_pos);
             DialogResult dialog = pos.ShowDialog();
 
-            if(dialog == DialogResult.Cancel)
+            if (dialog == DialogResult.Cancel)
             {
                 MessageBox.Show($"Point of Sale closed");
             }
-        }
-
-        public void InitializePointOfSale()
-        {
-            PointOfSale = new PointOfSale("Jolan Company", 2500.0);
         }
     }
 }
