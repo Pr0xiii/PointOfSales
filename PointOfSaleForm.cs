@@ -47,8 +47,6 @@ namespace PointOfSalesApp
 
         private void b_CreateProduct_Click(object sender, EventArgs e)
         {
-            // Open Product form
-            // If dialogResult == OK => Add Product
             ProductForm productForm = new ProductForm(_pos);
             DialogResult dialog = productForm.ShowDialog();
 

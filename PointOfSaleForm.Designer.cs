@@ -76,7 +76,7 @@
             productsLayoutPanel.Location = new Point(982, 122);
             productsLayoutPanel.Name = "productsLayoutPanel";
             productsLayoutPanel.Padding = new Padding(10);
-            productsLayoutPanel.Size = new Size(494, 559);
+            productsLayoutPanel.Size = new Size(494, 447);
             productsLayoutPanel.TabIndex = 3;
             // 
             // groupBox_Sale
@@ -84,7 +84,7 @@
             groupBox_Sale.Controls.Add(textBoxSale);
             groupBox_Sale.Location = new Point(31, 122);
             groupBox_Sale.Name = "groupBox_Sale";
-            groupBox_Sale.Size = new Size(785, 559);
+            groupBox_Sale.Size = new Size(785, 447);
             groupBox_Sale.TabIndex = 4;
             groupBox_Sale.TabStop = false;
             groupBox_Sale.Text = "Current Sale";
@@ -96,13 +96,13 @@
             textBoxSale.Name = "textBoxSale";
             textBoxSale.ReadOnly = true;
             textBoxSale.ScrollBars = ScrollBars.Vertical;
-            textBoxSale.Size = new Size(707, 503);
+            textBoxSale.Size = new Size(707, 392);
             textBoxSale.TabIndex = 0;
             textBoxSale.TextChanged += textBoxSale_TextChanged;
             // 
             // b_Encaisser
             // 
-            b_Encaisser.Location = new Point(837, 583);
+            b_Encaisser.Location = new Point(837, 471);
             b_Encaisser.Name = "b_Encaisser";
             b_Encaisser.Size = new Size(124, 98);
             b_Encaisser.TabIndex = 5;
@@ -122,7 +122,7 @@
             // 
             // b_Cancel
             // 
-            b_Cancel.Location = new Point(837, 450);
+            b_Cancel.Location = new Point(837, 340);
             b_Cancel.Name = "b_Cancel";
             b_Cancel.Size = new Size(124, 93);
             b_Cancel.TabIndex = 7;
@@ -133,7 +133,7 @@
             // labelTotalPrice
             // 
             labelTotalPrice.AutoSize = true;
-            labelTotalPrice.Location = new Point(730, 699);
+            labelTotalPrice.Location = new Point(633, 583);
             labelTotalPrice.Name = "labelTotalPrice";
             labelTotalPrice.Size = new Size(64, 23);
             labelTotalPrice.TabIndex = 8;
@@ -143,7 +143,7 @@
             // 
             AutoScaleDimensions = new SizeF(10F, 22F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1540, 742);
+            ClientSize = new Size(1485, 635);
             Controls.Add(labelTotalPrice);
             Controls.Add(b_Cancel);
             Controls.Add(b_CreateProduct);

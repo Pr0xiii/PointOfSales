@@ -14,6 +14,10 @@ namespace PointOfSalesApp
     {
         private readonly PointOfSale _pos;
         private readonly Product _product;
+
+        private int productTVA = 0;
+        private bool margeFixed = true;
+
         public ProductForm(PointOfSale pos)
         {
             _pos = pos;
@@ -26,16 +30,15 @@ namespace PointOfSalesApp
             if (comboBoxMarge.SelectedItem.ToString() == "Variable")
             {
                 salePriceField.ReadOnly = false;
-                _product.FixedMarge = false;
-                _product.SalePrice = double.Parse(salePriceField.Text);
+                margeFixed = false;
             }
             else
             {
                 salePriceField.ReadOnly = true;
-                _product.FixedMarge = true;
-                _product.Marge = 20;
+                margeFixed = true;
             }
-            salePriceField.Text = _product.SalePrice.ToString();
+            salePriceField.Text = CalculateSalePrice().ToString();
+            OnChangeField(true);
         }
 
         private void costPriceField_TextChanged(object sender, EventArgs e)
@@ -44,8 +47,8 @@ namespace PointOfSalesApp
 
             if (cost)
             {
-                _product.CostPrice = result;
-                salePriceField.Text = _product.SalePrice.ToString();
+                salePriceField.Text = CalculateSalePrice().ToString();
+                OnChangeField(true);
             }
             else
             {
@@ -58,24 +61,31 @@ namespace PointOfSalesApp
             switch (comboBoxTVA.SelectedIndex)
             {
                 case 0:
-                    _product.TVA = 0;
+                    productTVA = 0;
                     break;
 
                 case 1:
-                    _product.TVA = 6;
+                    productTVA = 6;
                     break;
 
                 case 2:
-                    _product.TVA = 21;
+                    productTVA = 21;
                     break;
             }
-            salePriceField.Text = _product.SalePrice.ToString();
+
+            salePriceField.Text = CalculateSalePrice().ToString();
+            OnChangeField(true);
         }
 
         private void b_Save_Click(object sender, EventArgs e)
         {
             //Save en backend
-            _product.Name = productNameField.Text;
+            _product.Name = productNameField.Text == "" ? "New product" : productNameField.Text;
+            _product.CostPrice = costPriceField.Text == "" ? 0 : double.Parse(costPriceField.Text);
+            _product.SalePrice = salePriceField.Text == "" ? 0 : double.Parse(salePriceField.Text);
+            _product.TVA = productTVA;
+            _product.FixedMarge = margeFixed;
+            OnChangeField(false);
         }
 
         private void salePriceField_ReadOnlyChanged(object sender, EventArgs e)
@@ -85,8 +95,47 @@ namespace PointOfSalesApp
 
         private void b_Create_Click(object sender, EventArgs e)
         {
+            if(b_Save.Visible == true)
+            {
+                b_Save_Click(sender, e);
+            }
+            
             _pos.Products.Add(_product);
             this.DialogResult = DialogResult.OK;
+        }
+
+        private void productNameField_TextChanged(object sender, EventArgs e)
+        {
+            OnChangeField(true);
+        }
+
+        private double CalculateSalePrice()
+        {
+            double cost = double.Parse(costPriceField.Text);
+            if (margeFixed)
+            {
+                return cost + (cost * productTVA / 100) + (cost * 20 / 100);
+            }
+            else
+            {
+                return cost;
+            }
+        }
+
+        private void b_Cancel_Click(object sender, EventArgs e)
+        {
+            productNameField.Text = _product.Name;
+            costPriceField.Text = _product.CostPrice.ToString();
+            salePriceField.Text = _product.CostPrice.ToString();
+            margeFixed = _product.FixedMarge;
+            comboBoxTVA.ResetText();
+            comboBoxMarge.ResetText();
+        }
+
+        private void OnChangeField(bool state)
+        {
+            b_Save.Visible = state;
+            b_Cancel.Visible = state;
         }
     }
 }

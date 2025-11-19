@@ -42,6 +42,7 @@
             comboBoxTVA = new ComboBox();
             b_Save = new Button();
             b_Create = new Button();
+            b_Cancel = new Button();
             SuspendLayout();
             // 
             // label1
@@ -62,6 +63,7 @@
             productNameField.Name = "productNameField";
             productNameField.Size = new Size(450, 30);
             productNameField.TabIndex = 1;
+            productNameField.TextChanged += productNameField_TextChanged;
             // 
             // label2
             // 
@@ -154,29 +156,42 @@
             // 
             // b_Save
             // 
-            b_Save.Location = new Point(622, 20);
+            b_Save.Location = new Point(584, 20);
             b_Save.Name = "b_Save";
             b_Save.Size = new Size(75, 32);
             b_Save.TabIndex = 12;
             b_Save.Text = "Save";
             b_Save.UseVisualStyleBackColor = true;
+            b_Save.Visible = false;
             b_Save.Click += b_Save_Click;
             // 
             // b_Create
             // 
-            b_Create.Location = new Point(714, 20);
+            b_Create.Location = new Point(677, 369);
             b_Create.Name = "b_Create";
-            b_Create.Size = new Size(75, 32);
+            b_Create.Size = new Size(92, 32);
             b_Create.TabIndex = 13;
             b_Create.Text = "Create";
             b_Create.UseVisualStyleBackColor = true;
             b_Create.Click += b_Create_Click;
             // 
+            // b_Cancel
+            // 
+            b_Cancel.Location = new Point(677, 20);
+            b_Cancel.Name = "b_Cancel";
+            b_Cancel.Size = new Size(92, 32);
+            b_Cancel.TabIndex = 14;
+            b_Cancel.Text = "Cancel";
+            b_Cancel.UseVisualStyleBackColor = true;
+            b_Cancel.Visible = false;
+            b_Cancel.Click += b_Cancel_Click;
+            // 
             // ProductForm
             // 
             AutoScaleDimensions = new SizeF(10F, 22F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(801, 398);
+            ClientSize = new Size(801, 413);
+            Controls.Add(b_Cancel);
             Controls.Add(b_Create);
             Controls.Add(b_Save);
             Controls.Add(comboBoxTVA);
@@ -215,5 +230,6 @@
         private ComboBox comboBoxTVA;
         private Button b_Save;
         private Button b_Create;
+        private Button b_Cancel;
     }
 }
