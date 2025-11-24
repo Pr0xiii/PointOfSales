@@ -30,7 +30,7 @@ namespace PointOfSalesApp
         }
         private void InitializeProducts()
         {
-            using(var db = new PosContext())
+            using (var db = new PosContext())
             {
                 var products = db.Products.ToList();
 
@@ -66,8 +66,13 @@ namespace PointOfSalesApp
 
         private void b_CreateClient_Click(object sender, EventArgs e)
         {
-            // Open Client form
-            // If dialogResult == OK => Create Client
+            ClientForm clientForm = new ClientForm(_pos);
+            DialogResult result = clientForm.ShowDialog();
+
+            if (result == DialogResult.OK)
+            {
+                MessageBox.Show("New client created");
+            }
         }
 
         private void b_Cancel_Click(object sender, EventArgs e)
@@ -91,6 +96,12 @@ namespace PointOfSalesApp
         private void textBoxSale_TextChanged(object sender, EventArgs e)
         {
             labelTotalPrice.Text = $"Total : {_pos.CurrentSale.GetTotalPrice()}";
+        }
+
+        private void b_SetClient_Click(object sender, EventArgs e)
+        {
+            ClientsDataForm clientsDataForm = new ClientsDataForm();
+            DialogResult result = clientsDataForm.ShowDialog();
         }
     }
 }

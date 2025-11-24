@@ -4,19 +4,22 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PointOfSalesApp
+namespace PointOfSalesApp.Models
 {
     public class Client
     {
-        public string Name { get; private set; }
-        public string TVA { get; private set; }
-        public double Money { get; private set; }
+        public int Id { get; set; }
+        public string Name { get; set; }
+        public bool IsCompany { get; set; }
+        public string TVA { get; set; }
+        public double Money { get; set; }
 
-        public Client(string name, string tva, double money)
+        public Client()
         {
-            Name = name;
-            TVA = tva;
-            Money = money;
+            Name = "Default Client";
+            TVA = "BE012345678";
+            Money = 0;
+            IsCompany = true;
         }
 
         public bool Acheter(double amount)

@@ -60,6 +60,7 @@
             b_SetClient.TabIndex = 1;
             b_SetClient.Text = "Set Client";
             b_SetClient.UseVisualStyleBackColor = true;
+            b_SetClient.Click += b_SetClient_Click;
             // 
             // b_CreateClient
             // 
