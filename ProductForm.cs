@@ -1,4 +1,6 @@
-﻿using System;
+﻿using PointOfSalesApp.Data;
+using PointOfSalesApp.Models;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -85,6 +87,7 @@ namespace PointOfSalesApp
             _product.SalePrice = salePriceField.Text == "" ? 0 : double.Parse(salePriceField.Text);
             _product.TVA = productTVA;
             _product.FixedMarge = margeFixed;
+            _product.Id = defaultCodeInput.Text == "" ? 0 : int.Parse(defaultCodeInput.Text);
             OnChangeField(false);
         }
 
@@ -95,12 +98,15 @@ namespace PointOfSalesApp
 
         private void b_Create_Click(object sender, EventArgs e)
         {
-            if(b_Save.Visible == true)
+            if (b_Save.Visible == true)
             {
                 b_Save_Click(sender, e);
             }
-            
+
             _pos.Products.Add(_product);
+            using var db = new PosContext();
+            db.Products.Add(_product);
+            db.SaveChanges();
             this.DialogResult = DialogResult.OK;
         }
 
@@ -124,18 +130,54 @@ namespace PointOfSalesApp
 
         private void b_Cancel_Click(object sender, EventArgs e)
         {
-            productNameField.Text = _product.Name;
-            costPriceField.Text = _product.CostPrice.ToString();
-            salePriceField.Text = _product.CostPrice.ToString();
-            margeFixed = _product.FixedMarge;
-            comboBoxTVA.ResetText();
-            comboBoxMarge.ResetText();
+            var result = MessageBox.Show("Are you sure you want to cancel ?", "Cancel Form", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+
+            if (result == DialogResult.Yes)
+            {
+                productNameField.Text = _product.Name;
+                costPriceField.Text = _product.CostPrice.ToString();
+                salePriceField.Text = _product.CostPrice.ToString();
+                margeFixed = _product.FixedMarge;
+                defaultCodeInput.Text = _product.Id.ToString();
+                comboBoxTVA.ResetText();
+                comboBoxMarge.ResetText();
+                OnChangeField(false);
+            }
         }
 
         private void OnChangeField(bool state)
         {
             b_Save.Visible = state;
             b_Cancel.Visible = state;
+        }
+
+        private void ProductForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (this.DialogResult == DialogResult.OK) return;
+
+            if (b_Save.Visible)
+            {
+                var result = MessageBox.Show("Are you sure you want to quit without saving ?", "Close Form", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+
+                if (result == DialogResult.No)
+                {
+                    e.Cancel = true;
+                }
+            }
+            else
+            {
+                var result = MessageBox.Show("Are you sure you want to quit ?", "Close Form", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+
+                if (result == DialogResult.No)
+                {
+                    e.Cancel = true;
+                }
+            }
+        }
+
+        private void defaultCodeInput_TextChanged(object sender, EventArgs e)
+        {
+            OnChangeField(true);
         }
     }
 }

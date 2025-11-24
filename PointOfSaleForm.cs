@@ -1,4 +1,6 @@
-﻿using System;
+﻿using PointOfSalesApp.Data;
+using PointOfSalesApp.Models;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -28,15 +30,21 @@ namespace PointOfSalesApp
         }
         private void InitializeProducts()
         {
-            if (_pos.Products.Count == 0) return;
-            // Initialize products
-            foreach (Product product in _pos.Products)
+            using(var db = new PosContext())
             {
-                Button btn = new Button();
-                btn.Size = new Size(100, 50);
-                btn.Text = product.Name;
-                btn.Click += (sender, e) => AddProductToSale(product);
-                productsLayoutPanel.Controls.Add(btn);
+                var products = db.Products.ToList();
+
+                if (products.Count == 0) return;
+                productsLayoutPanel.Controls.Clear();
+                // Initialize products
+                foreach (Product product in products)
+                {
+                    Button btn = new Button();
+                    btn.Size = new Size(100, 50);
+                    btn.Text = product.Name;
+                    btn.Click += (sender, e) => AddProductToSale(product);
+                    productsLayoutPanel.Controls.Add(btn);
+                }
             }
         }
         private void AddProductToSale(Product product)

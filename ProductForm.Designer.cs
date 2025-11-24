@@ -43,6 +43,8 @@
             b_Save = new Button();
             b_Create = new Button();
             b_Cancel = new Button();
+            label7 = new Label();
+            defaultCodeInput = new TextBox();
             SuspendLayout();
             // 
             // label1
@@ -186,11 +188,30 @@
             b_Cancel.Visible = false;
             b_Cancel.Click += b_Cancel_Click;
             // 
+            // label7
+            // 
+            label7.AutoSize = true;
+            label7.Location = new Point(342, 182);
+            label7.Name = "label7";
+            label7.Size = new Size(151, 23);
+            label7.TabIndex = 15;
+            label7.Text = "Internal Reference";
+            // 
+            // defaultCodeInput
+            // 
+            defaultCodeInput.Location = new Point(508, 182);
+            defaultCodeInput.Name = "defaultCodeInput";
+            defaultCodeInput.Size = new Size(151, 30);
+            defaultCodeInput.TabIndex = 16;
+            defaultCodeInput.TextChanged += defaultCodeInput_TextChanged;
+            // 
             // ProductForm
             // 
             AutoScaleDimensions = new SizeF(10F, 22F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(801, 413);
+            Controls.Add(defaultCodeInput);
+            Controls.Add(label7);
             Controls.Add(b_Cancel);
             Controls.Add(b_Create);
             Controls.Add(b_Save);
@@ -210,6 +231,7 @@
             Margin = new Padding(5);
             Name = "ProductForm";
             Text = "ProductForm";
+            FormClosing += ProductForm_FormClosing;
             ResumeLayout(false);
             PerformLayout();
         }
@@ -231,5 +253,7 @@
         private Button b_Save;
         private Button b_Create;
         private Button b_Cancel;
+        private Label label7;
+        private TextBox defaultCodeInput;
     }
 }
